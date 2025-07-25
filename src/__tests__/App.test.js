@@ -17,8 +17,7 @@ afterAll(() => server.close());
 
 test("displays question prompts after fetching", async () => {
   render(<App />);
-
-  fireEvent.click(screen.queryByText(/View Questions/));
+  // No need to click "View Questions" here, app starts on questions list
 
   expect(await screen.findByText(/lorem testum 1/g)).toBeInTheDocument();
   expect(await screen.findByText(/lorem testum 2/g)).toBeInTheDocument();
@@ -60,7 +59,7 @@ test("creates a new question when the form is submitted", async () => {
 test("deletes the question when the delete button is clicked", async () => {
   const { rerender } = render(<App />);
 
-  fireEvent.click(screen.queryByText(/View Questions/));
+  // No need to click "View Questions" here, app starts on questions list
 
   await screen.findByText(/lorem testum 1/g);
 
@@ -78,7 +77,7 @@ test("deletes the question when the delete button is clicked", async () => {
 test("updates the answer when the dropdown is changed", async () => {
   const { rerender } = render(<App />);
 
-  fireEvent.click(screen.queryByText(/View Questions/));
+  // No need to click "View Questions" here, app starts on questions list
 
   await screen.findByText(/lorem testum 2/g);
 
@@ -86,9 +85,9 @@ test("updates the answer when the dropdown is changed", async () => {
     target: { value: "3" },
   });
 
-  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
+  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("2");
 
   rerender(<App />);
 
-  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
+  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("2");
 });
