@@ -20,6 +20,7 @@ function QuestionForm({ onAddQuestion }) {
       answers,
       correctIndex: Number(correctIndex),
     });
+    // Reset the form
     setPrompt("");
     setAnswers(["", "", "", ""]);
     setCorrectIndex(0);
@@ -40,6 +41,7 @@ function QuestionForm({ onAddQuestion }) {
             />
           </label>
         </div>
+
         {answers.map((ans, i) => (
           <div key={i}>
             <label>
@@ -53,6 +55,7 @@ function QuestionForm({ onAddQuestion }) {
             </label>
           </div>
         ))}
+
         <div>
           <label>
             Correct Answer:{" "}
@@ -68,6 +71,7 @@ function QuestionForm({ onAddQuestion }) {
             </select>
           </label>
         </div>
+
         <button type="submit">Add Question</button>
       </form>
     </section>
